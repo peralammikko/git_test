@@ -1,3 +1,5 @@
+let playerScore = 0;
+let compScore = 0;
 
 function getComputerChoice() {
     let picks = ["rock", "paper", "scissors"];
@@ -9,24 +11,45 @@ function getComputerChoice() {
 function playRound(playerSelect, compSelect) {
     console.log("Player: ", playerSelect);
     console.log("Computer: ", compSelect);
-    let winner = whoWon(playerSelect, compSelect);
-    console.log(winner);
+    let winner = checkMatchup(playerSelect, compSelect);
+    if (winner == "draw") {
+        console.log("It's a draw!")
+    }
+    else if (winner == "player") {
+        playerScore++;
+        console.log("Player wins! Total score: ", playerScore);
+    } else {
+        compScore++;
+        console.log("Computer wins! Total score: ", compScore);
+    }
 }
 
-function whoWon(playerSelect, compSelect) {
+function checkMatchup(playerSelect, compSelect) {
     if (playerSelect == compSelect) {
-        return "It's a draw!"
+        return "draw"
     }
-
     if (playerSelect == "rock" && compSelect == "scissors"
     || playerSelect == "scissors" && compSelect == "paper"
     || playerSelect == "paper" && compSelect == "rock") {
-        return "Player wins";
+        return "player";
     } else {
-        return "Computer wins";
+        return "computer";
     }
 }
 
-const playerSelect = prompt("Enter your choice");
-const compSelect = getComputerChoice();
-console.log(playRound(playerSelect, compSelect));
+function game() {
+    for (let i = 1; i < 6; i++) {
+        const playerSelect = prompt("Enter your choice").toLowerCase();
+        const compSelect = getComputerChoice();
+        console.log("Round: ", i, "/ 5")
+        console.log(playRound(playerSelect, compSelect));
+    }
+    console.log("The winner is... ");
+    if (playerScore > compScore) {
+        console.log("Player!");
+    } else {
+        console.log("Computer!");
+    }
+}
+
+game();
