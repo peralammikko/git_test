@@ -9,18 +9,16 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelect, compSelect) {
-    console.log("Player: ", playerSelect);
-    console.log("Computer: ", compSelect);
     let winner = checkMatchup(playerSelect, compSelect);
     if (winner == "draw") {
-        console.log("It's a draw!")
+        return "It's a draw!";
     }
     else if (winner == "player") {
         playerScore++;
-        console.log("Player wins! Total score: ", playerScore);
+        return "Player wins!";
     } else {
         compScore++;
-        console.log("Computer wins! Total score: ", compScore);
+        return "Computer wins!";
     }
 }
 
@@ -37,19 +35,46 @@ function checkMatchup(playerSelect, compSelect) {
     }
 }
 
-function game() {
-    for (let i = 1; i < 6; i++) {
-        const playerSelect = prompt("Enter your choice").toLowerCase();
-        const compSelect = getComputerChoice();
-        console.log("Round: ", i, "/ 5")
-        console.log(playRound(playerSelect, compSelect));
+function printPoints() {
+    // Scoreboard
+    const playerPoints = document.querySelector('#playerPoints');
+    playerPoints.textContent = "Player: " + playerScore;
+    const compPoints = document.querySelector('#compPoints');
+    compPoints.textContent = "Computer: " + compScore;
+    if (playerScore == 5 || compScore == 5) {
+        endGame();
     }
-    console.log("The winner is... ");
-    if (playerScore > compScore) {
-        console.log("Player!");
-    } else {
-        console.log("Computer!");
-    }
+
 }
 
-game();
+function endGame() {
+    const winnerText = document.querySelector('#winnerName');
+    let winner = (playerScore == 5 ? "Player" : "Computer");
+    winnerText.textContent = winner + " has won the game!";
+
+    buttons.forEach((button) => {
+        button.disabled = true;
+    })
+}
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                // Player's pick
+                const playerChoice = button.id;
+                const content = document.querySelector('#playerChoice');
+                content.textContent = "Player chooses " + button.id;
+
+                // Computer's pick
+                const compChoice = getComputerChoice();
+                const content2 = document.querySelector('#compChoice');
+                content2.textContent = "Computer chooses " + compChoice;
+
+                // Round results
+                const roundText = document.querySelector('#roundResult');
+                const roundResult = playRound(playerChoice, compChoice);
+                roundText.textContent = roundResult;
+
+                printPoints();
+            });
+        });
