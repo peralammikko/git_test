@@ -56,9 +56,15 @@ function inputOperand(operand) {
 }
 
 function inputOperator(operator) {
-    if (firstNum != null && secondNum === null) {
-
-    } else if (firstNum != null && secondNum != null) {
+    if (firstOp != null && secondOp === null) {
+        secondOp = operator;
+        secondNum = displayValue;
+        result = operate(Number(firstNum), Number(secondNum), firstOp);
+        console.log(result);
+        displayValue = result;
+        firstNum = displayValue;
+        result = null;
+    } else if (firstOp != null && secondOp != null) {
 
     } else {
         firstOp = operator;
@@ -67,7 +73,35 @@ function inputOperator(operator) {
 }
 
 function inputEquals() {
-
+    if (firstOp === null) {
+        displayValue = displayValue;
+    } else if (secondOp != null) {
+        secondNum = displayValue;
+        result = operate(Number(firstNum), Number(secondNum), secondOp);
+        if (result === "error") {
+            return "Error!";
+        } else {
+            displayValue = result;
+            firstOperand = displayValue;
+            secondOperant = null;
+            firstOp = null;
+            secondOp = null;
+            result = null;
+        }
+    } else {
+        secondNum = displayValue;
+        result = operate(Number(firstNum), Number(secondNum), firstOp);
+        if (result === "error") {
+            return "Error!";
+        } else {
+            displayValue = result;
+            firstOperand = displayValue;
+            secondOperant = null;
+            firstOp = null;
+            secondOp = null;
+            result = null;
+        }
+    }
 }
 
 function clearDisplay() {
@@ -84,7 +118,7 @@ function operate(a,b,op) {
         return a*b;
     } else if (op==="/") {
         if (b===0) {
-            return "Error!";
+            return "error";
         }
         return a/b;
     }
