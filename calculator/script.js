@@ -9,6 +9,7 @@ const buttons = document.querySelectorAll('button');
 function updateDisplay() {
     const display = document.getElementById("display");
     display.innerText = displayValue;
+    console.log("Display value: ", displayValue);
     if (displayValue.length > 9) {
         display.innerText = displayValue.substring(0,9);
     }
@@ -65,7 +66,12 @@ function inputOperator(operator) {
         firstNum = displayValue;
         result = null;
     } else if (firstOp != null && secondOp != null) {
-
+        secondNum = displayValue;
+        result = operate(Number(firstNum), Number(secondNum), secondOp);
+        secondOp = operator;
+        displayValue = result;
+        firstNum = displayValue;
+        result = null;
     } else {
         firstOp = operator;
         firstNum = displayValue;

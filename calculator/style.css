@@ -1,10 +1,11 @@
 button {
     background-color: #3882f6;
     color: #E5E7EB;
-    border-radius: 6px;
-    border-style: none;
-    padding: 16px;
-    margin: 8px;
+    border-radius: 5%;
+    border: none;
+    margin: 1px;
+    font-size: 2em;
+    border-style: dashed;
 }
 
 #calculator {
@@ -29,6 +30,6 @@ button {
     justify-content: space-around;
     align-items: flex-end;
     padding: 5px;
-    font-size: 5.5em;
+    font-size: 3.5em;
     background-color: gray;
 }
