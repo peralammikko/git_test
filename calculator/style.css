@@ -1,0 +1,34 @@
+button {
+    background-color: #3882f6;
+    color: #E5E7EB;
+    border-radius: 6px;
+    border-style: none;
+    padding: 16px;
+    margin: 8px;
+}
+
+#calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+}
+
+#container {
+    background-color: darkslategray;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    border: 10px solid;
+    border-color: black;
+}
+
+#display {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 5px;
+    font-size: 5.5em;
+    background-color: gray;
+}
