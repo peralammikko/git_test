@@ -83,7 +83,8 @@ function inputEquals() {
         secondNum = displayValue;
         result = operate(Number(firstNum), Number(secondNum), secondOp);
         if (result === "error") {
-            return "Error!";
+            displayValue = "ERROR";
+            result = null;
         } else {
             displayValue = result;
             firstOperand = displayValue;
@@ -96,7 +97,8 @@ function inputEquals() {
         secondNum = displayValue;
         result = operate(Number(firstNum), Number(secondNum), firstOp);
         if (result === "error") {
-            return "Error!";
+            displayValue = "ERROR";
+            result = null;
         } else {
             displayValue = result;
             firstOperand = displayValue;
