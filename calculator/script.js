@@ -22,8 +22,6 @@ function clickButtons() {
         btn.addEventListener('click', function() {
             if (btn.classList.contains("operand")) {
                 inputOperand(btn.value);
-                updateDisplay();
-                console.log(displayValue);
             } else if (btn.classList.contains("operator")) {
                 inputOperator(btn.value);
             } else if (btn.classList.contains("equals")) {
@@ -111,7 +109,12 @@ function inputEquals() {
 }
 
 function clearDisplay() {
-
+    displayValue = 0;
+    firstNum = null;
+    secondNum = null;
+    firstOp = null;
+    secondOp = null;
+    result = null;
 }
 
 
